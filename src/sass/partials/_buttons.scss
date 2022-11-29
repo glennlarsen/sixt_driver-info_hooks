@@ -1,0 +1,16 @@
+button {
+    padding: .8em;
+    background: $color-primary;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    margin-top: .8em;
+    border: none;
+    transition: .2s;
+
+    &:hover {
+        background-color: $color-hover;
+        cursor: pointer;
+    }
+}

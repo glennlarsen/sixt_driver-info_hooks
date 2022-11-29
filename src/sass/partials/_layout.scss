@@ -1,0 +1,42 @@
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 1em;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    flex: 1;
+
+    img {
+        width: 130px;
+    }
+}
+
+.emtpy-header {
+    flex: 1;
+}
+
+.main-layout {
+    display: flex;
+    gap: 2em;
+
+    &>div:first-of-type {
+        flex: 1;
+    }
+
+    &>div:not(:first-of-type) {
+        flex: 3;
+    }
+
+    &>div {
+        display: flex;
+        flex-direction: column;
+    }
+}
