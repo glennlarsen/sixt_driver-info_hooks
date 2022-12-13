@@ -1,8 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 
 const FormTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -13,7 +14,7 @@ const FormTextField = styled(TextField)({
   },
 });
 
-function LoginForm() {
+const LoginForm = () => {
   const navigate = useNavigate();
   const submit = () => {
     navigate("/forms")

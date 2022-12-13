@@ -1,10 +1,11 @@
 import React from "react";
 import logo from "images/sixt-logo-black-white.png";
 
-function Header({title}) {
+function Header({title, flex}) {
+
   return (
     <header>
-      <div className="logo">
+      <div style={{ 'flex': flex }} className="logo">
         <img src={logo} alt="Sixt Logo" />
       </div>
       <h1>{title}</h1>
