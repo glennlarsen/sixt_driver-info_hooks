@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { Controller } from "react-hook-form";
 
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -54,10 +53,6 @@ function DriverInformation() {
       setSubmitted(false);
       setError(true);
     }
-  }
-
-  const clearAll = () => {
-    reset();
   }
 
   const countries = useMemo(() => countryList().getData(), []);
@@ -206,7 +201,7 @@ function DriverInformation() {
         }
       />
       <button type="submit">Submit</button>
-      <span onClick={clearAll} className="btn-reset">Reset fields</span>
+      <span onClick={() => reset()} className="btn-reset">Reset fields</span>
     </Box>
   );
 }

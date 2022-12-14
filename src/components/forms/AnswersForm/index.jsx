@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { BASE_URL, DRIVERFORMS } from "constants/apiKeys";
+import useApi from "utils/useApi";
+import MyLoader from "components/MyLoader";
+import DeleteDriver from "utils/DeleteDriver";
+import AlertMessage from "components/AlertMessage";
+
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
@@ -39,8 +45,9 @@ const FormTextField = styled(TextField)({
 });
 
 function AnswersForm() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [copySuccess, setCopySuccess] = useState("");
+  const [deleted, setDeleted] = useState(false);
   const countryRef = useRef(null);
   const streetRef = useRef(null);
   const postalRef = useRef(null);
@@ -113,188 +120,277 @@ function AnswersForm() {
     setShow(true);
   }
 
-  const current = new Date();
-  const todayDate = `${current.getDate()}.${current.getMonth()+1}.${current.getFullYear()} kl.${current.toLocaleTimeString("No-no")}`;
+  const url = BASE_URL + DRIVERFORMS;
+  const { answers, loading, error } = useApi(url);
+
+  async function handleDelete(id) {
+    const deleteThis = window.confirm(
+      "This will delete this Driver info forever. Are you sure?"
+    );
+
+    if (deleteThis) {
+      const deleteDriv = await DeleteDriver(id);
+      if (deleteDriv.success) {
+        setDeleted(true);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 2000);
+      } else {
+        setDeleted(false);
+      }
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="loaderContainer">
+        <MyLoader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="loaderContainer">An error occured!</div>;
+  }
+
+  if (answers.length < 1) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Box className="answers-form">
+          <div className="no-answers">
+            No Answers Yet. Find a customer that can fill your Live Form! Click
+            Refresh if the result dont show automatically.
+          </div>
+          <button onClick={refreshPage} type="submit">
+            Refresh
+          </button>
+        </Box>
+      </ThemeProvider>
+    );
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        className="answers-form"
-      >
-        <span className="last-received"><strong>Last Answer: </strong>{todayDate} </span>
-        <Tooltip title="Click to Copy">
-          <FormTextField
-            onClick={copyCountry}
-            InputProps={{
-              readOnly: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" color="primary">
-                    <ContentCopyIcon
-                      sx={{ height: ".8em", width: ".8em" }}
-                      onClick={copyCountry}
+    <>
+      {answers
+        .sort((b, a) => a.id - b.id)
+        .filter((item, idx) => idx < 1)
+        .map((item) => {
+          const { country, street, postal, city, phone, email, publishedAt } =
+            item.attributes;
+          var options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+          };
+          const formatDate = (value, locale = "nb-NO") => {
+            return new Date(value).toLocaleDateString(locale, options);
+          };
+
+          return (
+            <ThemeProvider theme={theme} key={item.id}>
+              <Box
+                component="form"
+                noValidate
+                autoComplete="off"
+                className="answers-form"
+              >
+                <span className="last-received">
+                  <strong>Last Answer: </strong>
+                  {answers ? (
+                    formatDate(publishedAt)
+                  ) : (
+                    <div>No answers yet!</div>
+                  )}
+                </span>
+                <Tooltip title="Click to Copy">
+                  <FormTextField
+                    onClick={copyCountry}
+                    InputProps={{
+                      readOnly: true,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton edge="end" color="primary">
+                            <ContentCopyIcon
+                              sx={{ height: ".8em", width: ".8em" }}
+                              onClick={copyCountry}
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    variant="standard"
+                    label="Country"
+                    type="text"
+                    defaultValue={answers ? country : ""}
+                    inputRef={countryRef}
+                  />
+                </Tooltip>
+                <Tooltip title="Click to Copy">
+                  <FormTextField
+                    onClick={copyStreet}
+                    InputProps={{
+                      readOnly: true,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton edge="end" color="primary">
+                            <ContentCopyIcon
+                              sx={{ height: ".8em", width: ".8em" }}
+                              onClick={copyStreet}
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    variant="standard"
+                    label="Street"
+                    type="text"
+                    defaultValue={answers ? street : ""}
+                    inputRef={streetRef}
+                  />
+                </Tooltip>
+                <Box gap={2} display="flex">
+                  <Tooltip title="Click to Copy">
+                    <FormTextField
+                      onClick={copyPostal}
+                      InputProps={{
+                        readOnly: true,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton edge="end" color="primary">
+                              <ContentCopyIcon
+                                sx={{ height: ".8em", width: ".8em" }}
+                                onClick={copyPostal}
+                              />
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      variant="standard"
+                      label="Postal Code"
+                      type="number"
+                      defaultValue={answers ? postal : ""}
+                      inputRef={postalRef}
                     />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            label="Country"
-            type="text"
-            defaultValue="Norway"
-            inputRef={countryRef}
-          />
-        </Tooltip>
-        <Tooltip title="Click to Copy">
-          <FormTextField
-            onClick={copyStreet}
-            InputProps={{
-              readOnly: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" color="primary">
-                    <ContentCopyIcon
-                      sx={{ height: ".8em", width: ".8em" }}
-                      onClick={copyStreet}
+                  </Tooltip>
+                  <Tooltip title="Click to Copy">
+                    <FormTextField
+                      onClick={copyCity}
+                      InputProps={{
+                        readOnly: true,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton edge="end" color="primary">
+                              <ContentCopyIcon
+                                sx={{ height: ".8em", width: ".8em" }}
+                                onClick={copyCity}
+                              />
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      variant="standard"
+                      label="City"
+                      type="text"
+                      fullWidth
+                      defaultValue={answers ? city : ""}
+                      inputRef={cityRef}
                     />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            label="Street"
-            type="text"
-            defaultValue="Vestre holbergsallmenningen 10"
-            inputRef={streetRef}
-          />
-        </Tooltip>
-        <Box gap={2} display="flex">
-          <Tooltip title="Click to Copy">
-            <FormTextField
-              onClick={copyPostal}
-              InputProps={{
-                readOnly: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton edge="end" color="primary">
-                      <ContentCopyIcon
-                        sx={{ height: ".8em", width: ".8em" }}
-                        onClick={copyPostal}
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              variant="standard"
-              label="Postal Code"
-              type="number"
-              defaultValue="5011"
-              inputRef={postalRef}
-            />
-          </Tooltip>
-          <Tooltip title="Click to Copy">
-            <FormTextField
-              onClick={copyCity}
-              InputProps={{
-                readOnly: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton edge="end" color="primary">
-                      <ContentCopyIcon
-                        sx={{ height: ".8em", width: ".8em" }}
-                        onClick={copyCity}
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              variant="standard"
-              label="City"
-              type="text"
-              fullWidth
-              defaultValue="Bergen"
-              inputRef={cityRef}
-            />
-          </Tooltip>
-        </Box>
-        <Tooltip title="Click to Copy">
-          <FormTextField
-            onClick={copyPhone}
-            InputProps={{
-              readOnly: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" color="primary">
-                    <ContentCopyIcon
-                      sx={{ height: ".8em", width: ".8em" }}
-                      onClick={copyPhone}
-                    />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            label="Phone Number"
-            type="phone"
-            defaultValue="+4791771028"
-            inputRef={phoneRef}
-          />
-        </Tooltip>
-        <Tooltip title="Click to Copy">
-          <FormTextField
-            onClick={copyEmail}
-            InputProps={{
-              readOnly: true,
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" color="primary">
-                    <ContentCopyIcon
-                      sx={{ height: ".8em", width: ".8em" }}
-                      onClick={copyEmail}
-                    />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-            label="Email"
-            type="email"
-            defaultValue="glenn_lar@hotmail.com"
-            inputRef={emailRef}
-          />
-        </Tooltip>
-        <button onClick={refreshPage} type="submit">
-          Refresh
-        </button>
-        <span className='btn-reset'>Clear fields</span>
-        {copySuccess && show ? (
-          <Collapse in={show}>
-            <Alert
-              action={
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setShow(false);
-                  }}
+                  </Tooltip>
+                </Box>
+                <Tooltip title="Click to Copy">
+                  <FormTextField
+                    onClick={copyPhone}
+                    InputProps={{
+                      readOnly: true,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton edge="end" color="primary">
+                            <ContentCopyIcon
+                              sx={{ height: ".8em", width: ".8em" }}
+                              onClick={copyPhone}
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    variant="standard"
+                    label="Phone Number"
+                    type="phone"
+                    defaultValue={answers ? phone : ""}
+                    inputRef={phoneRef}
+                  />
+                </Tooltip>
+                <Tooltip title="Click to Copy">
+                  <FormTextField
+                    onClick={copyEmail}
+                    InputProps={{
+                      readOnly: true,
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton edge="end" color="primary">
+                            <ContentCopyIcon
+                              sx={{ height: ".8em", width: ".8em" }}
+                              onClick={copyEmail}
+                            />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    variant="standard"
+                    label="Email"
+                    type="email"
+                    defaultValue={answers ? email : ""}
+                    inputRef={emailRef}
+                  />
+                </Tooltip>
+                <button onClick={refreshPage} type="submit">
+                  Refresh
+                </button>
+                <span
+                  onClick={() => handleDelete(item.id)}
+                  className="btn-reset"
                 >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              severity="success"
-            >
-              {copySuccess}
-            </Alert>
-          </Collapse>
-        ) : (
-          <div className="copy-alert"></div>
-        )}
-      </Box>
-    </ThemeProvider>
+                  Delete answer
+                </span>
+                {copySuccess && show ? (
+                  <Collapse in={show}>
+                    <Alert
+                      action={
+                        <IconButton
+                          aria-label="close"
+                          color="inherit"
+                          size="small"
+                          onClick={() => {
+                            setShow(false);
+                          }}
+                        >
+                          <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                      }
+                      severity="success"
+                    >
+                      {copySuccess}
+                    </Alert>
+                  </Collapse>
+                ) : (
+                  <div className="copy-alert"></div>
+                )}
+                {deleted && (
+                  <AlertMessage
+                    width="100px"
+                    variant="info"
+                    title="Deleted"
+                    message="Driver Info successfully deleted"
+                  />
+                )}
+              </Box>
+            </ThemeProvider>
+          );
+        })}
+    </>
   );
 }
 
