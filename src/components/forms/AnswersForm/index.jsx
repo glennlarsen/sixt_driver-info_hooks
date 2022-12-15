@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { BASE_URL, DRIVERFORMS } from "constants/apiKeys";
 import useApi from "utils/useApi";
@@ -123,21 +125,30 @@ function AnswersForm() {
   const url = BASE_URL + DRIVERFORMS;
   const { answers, loading, error } = useApi(url);
 
-  async function handleDelete(id) {
-    const deleteThis = window.confirm(
-      "This will delete this Driver info forever. Are you sure?"
-    );
+  const confirmDelete = (id) => {
+    confirmAlert({
+      title: "Delete Driver Info",
+      message: "Are you sure?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => handleDelete(id),
+        },
+        {
+          label: "No",
+          onClick: () => null,
+        },
+      ],
+    });
+  };
 
-    if (deleteThis) {
-      const deleteDriv = await DeleteDriver(id);
-      if (deleteDriv.success) {
-        setDeleted(true);
-        setTimeout(() => {
-          window.location.reload(true);
-        }, 2000);
-      } else {
-        setDeleted(false);
-      }
+  async function handleDelete(id) {
+    const deleteDriv = await DeleteDriver(id);
+    if (deleteDriv.success) {
+      setDeleted(true);
+        window.location.reload(true);
+    } else {
+      setDeleted(false);
     }
   }
 
@@ -350,8 +361,8 @@ function AnswersForm() {
                   Refresh
                 </button>
                 <span
-                  onClick={() => handleDelete(item.id)}
-                  className="btn-reset"
+                  onClick={() => confirmDelete(item.id)}
+                  className="btn-reset btn-delete"
                 >
                   Delete answer
                 </span>

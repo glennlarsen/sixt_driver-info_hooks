@@ -87,3 +87,23 @@ form {
     border-radius: 12px;
     margin-bottom: 1em;
 }
+
+.react-confirm-alert-body {
+    background: $color-primary !important;
+    color: white !important;
+    width: 100% !important;
+    border-radius: 12px !important;
+}
+
+.react-confirm-alert-button-group {
+    &> button {
+        background: $color-dark !important;
+        padding: 1em !important;
+        font-size: 1rem !important;
+        transition: .2s;
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
