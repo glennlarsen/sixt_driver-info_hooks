@@ -33,6 +33,7 @@ function DriverInformation() {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -87,6 +88,7 @@ function DriverInformation() {
         variant="standard"
         label="Country"
         type="text"
+        placeholder="Your home Country"
         {...register("country")}
         error={Boolean(errors.country)}
         helperText={errors.country ? errors.country.message : ""}
@@ -166,6 +168,7 @@ function DriverInformation() {
         variant="standard"
         label="Phone Number"
         type="number"
+        placeholder="+47..."
         {...register("phone")}
         error={Boolean(errors.phone)}
         helperText={errors.phone ? errors.phone.message : ""}
@@ -185,6 +188,7 @@ function DriverInformation() {
         variant="standard"
         label="Email"
         type="email"
+        placeholder="Your@email.com"
         {...register("email")}
         error={Boolean(errors.email)}
         helperText={errors.email ? errors.email.message : ""}
@@ -201,7 +205,9 @@ function DriverInformation() {
         }
       />
       <button type="submit">Submit</button>
-      <span onClick={() => reset()} className="btn-reset">Reset fields</span>
+      <span onClick={() => reset()} className="btn-reset">
+        Reset fields
+      </span>
     </Box>
   );
 }

@@ -1,16 +1,26 @@
 import * as yup from "yup";
-import { EMAIL_REGEX, MAX_PHONE_NUMBERS, MIN_PHONE_NUMBERS } from "constants/validationRules";
+import {
+  EMAIL_REGEX,
+  MAX_PHONE_NUMBERS,
+  MIN_PHONE_NUMBERS,
+} from "constants/validationRules";
 
 const schema = yup.object().shape({
-  country: yup.string().required("Please enter your home country"),
-  postal: yup.string().required("Please enter your Postal Code"),
-  city: yup.string().required("Please enter your City"),
+  country: yup.string().nullable().transform((v, o) => (o === '' ? null : v)),
+  postal: yup.string().nullable().transform((v, o) => (o === '' ? null : v)),
+  city: yup.string().nullable(),
   email: yup
     .string()
-    .required("Please enter your email")
+    .nullable()
+    .transform((v, o) => (o === '' ? null : v))
     .matches(EMAIL_REGEX, "Enter a valid email"),
-  phone: yup.string().required("Please enter your Phone Number").max(MAX_PHONE_NUMBERS, "Phone number is to long").min(MIN_PHONE_NUMBERS, "Phone number is to short"),
-  street: yup.string().required("Please enter your Street address"),
+  phone: yup
+    .string()
+    .nullable()
+    .transform((v, o) => (o === '' ? null : v))
+    .max(MAX_PHONE_NUMBERS, "Phone number is to long")
+    .min(MIN_PHONE_NUMBERS, "Phone number is to short"),
+  street: yup.string().nullable().transform((v, o) => (o === '' ? null : v)),
 });
 
 export default schema;

@@ -78,7 +78,6 @@ form {
 }
 
 .no-answers {
-    height: 300px;
     width: 100%;
     border: 2px solid $color-primary;
     padding: 2em;
@@ -89,6 +88,10 @@ form {
 
     @media only screen and (max-width: 840px) {
         font-size: 1.5rem;
+      }
+
+      @media only screen and (max-width: 440px) {
+        font-size: 1rem;
       }
 }
 
