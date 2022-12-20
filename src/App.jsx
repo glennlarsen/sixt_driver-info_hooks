@@ -11,14 +11,21 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={ <Login /> } />
-        <Route path="/forms" element={ <Forms /> } />
-        <Route path="/form" element={ <Form /> } />
-        <Route path="/liveform" element={ <LiveForm /> } />
-        <Route path="/answers" element={ <Answers /> } />
+        <Route path="/" element={<Login />} />
+        <Route path="/forms" element={<Forms />} />
+        <Route path="/form" element={<Form />} />
+        {["/form", "/form/:formName"].map((path, index) => {
+          return <Route path={path} element={<Form />} key={index} />;
+        })}
+        {["/liveform", "/liveform/:formName"].map((path, index) => {
+          return <Route path={path} element={<LiveForm />} key={index} />;
+        })}
+        {["/answers", "/answers/:formName"].map((path, index) => {
+          return <Route path={path} element={<Answers />} key={index} />;
+        })}
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

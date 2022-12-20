@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
-import { BASE_URL, DRIVERFORM1 } from "constants/apiKeys";
+import { BASE_URL, DRIVERFORM2 } from "constants/apiKeys";
 import useApi from "utils/useApi";
 import MyLoader from "components/MyLoader";
-import DeleteDriver from "utils/DeleteDriver";
+import DeleteDriver2 from "utils/DeleteDriver2";
 import AlertMessage from "components/AlertMessage";
 
 import TextField from "@mui/material/TextField";
@@ -46,7 +46,7 @@ const FormTextField = styled(TextField)({
   },
 });
 
-function AnswersForm() {
+function AnswersForm2() {
   const navigate = useNavigate();
   const [copySuccess, setCopySuccess] = useState("");
   const [deleted, setDeleted] = useState(false);
@@ -122,7 +122,7 @@ function AnswersForm() {
     setShow(true);
   }
 
-  const url = BASE_URL + DRIVERFORM1;
+  const url = BASE_URL + DRIVERFORM2;
   const { answers, loading, error } = useApi(url);
 
   const confirmDelete = (id) => {
@@ -143,7 +143,7 @@ function AnswersForm() {
   };
 
   async function handleDelete(id) {
-    const deleteDriv = await DeleteDriver(id);
+    const deleteDriv = await DeleteDriver2(id);
     if (deleteDriv.success) {
       setDeleted(true);
       window.location.reload(true);
@@ -406,4 +406,4 @@ function AnswersForm() {
   );
 }
 
-export default AnswersForm;
+export default AnswersForm2;

@@ -1,7 +1,7 @@
-import { BASE_URL, DRIVERFORM1 } from "constants/apiKeys";
+import { BASE_URL, DRIVERFORM2 } from "constants/apiKeys";
 import axios from "axios";
 
-async function SendDriverInfo(data) {
+async function SendDriverInfo2(data) {
   const formData = new FormData();
 
   const newInfo = {
@@ -18,7 +18,7 @@ async function SendDriverInfo(data) {
   const options = {
     method: "POST",
     data: formData,
-    url: BASE_URL + DRIVERFORM1,
+    url: BASE_URL + DRIVERFORM2,
   };
 
   try {
@@ -36,4 +36,4 @@ async function SendDriverInfo(data) {
   }
 }
 
-export default SendDriverInfo;
+export default SendDriverInfo2;

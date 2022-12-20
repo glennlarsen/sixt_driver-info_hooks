@@ -6,24 +6,27 @@ import { useNavigate } from "react-router-dom";
 
 const FormsForm = () => {
   const navigate = useNavigate();
-  const onClick = () => {
-    navigate("/form");
+
+  const clickForm1 = () => {
+    navigate("/form/flesland1");
   };
 
-  const onClickNew = () => {
-    navigate("/form");
+  const clickForm2 = () => {
+    navigate("/form/flesland2");
   };
 
   return (
     <Box sx={{ width: "100%" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid xs={6}>
-          <Paper onClick={onClick} className="box">
+          <Paper onClick={clickForm1} className="box">
             Flesland 1
           </Paper>
         </Grid>
         <Grid xs={6}>
-          <Paper className="box box-inactive">Flesland 2</Paper>
+          <Paper onClick={clickForm2} className="box">
+            Flesland 2
+          </Paper>
         </Grid>
         <Grid xs={6}>
           <Paper className="box box-inactive"> Flesland 3</Paper>

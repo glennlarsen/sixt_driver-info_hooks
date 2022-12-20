@@ -1,58 +1,63 @@
 .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 1em;
-    width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 1em;
+  width: 100%;
 
-    @media only screen and (max-width: 500px) {
-        padding: 1em 1.5em;
-      }
+  @media only screen and (max-width: 500px) {
+    padding: 1em 1.5em;
+  }
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    @media only screen and (max-width: 840px) {
-        text-align: center;
-        flex-direction: column;
-        h1 {
-            font-size: 2rem;
-        }
-      }
+  h1,
+  span {
+    text-transform: capitalize;
+  }
+
+  @media only screen and (max-width: 840px) {
+    text-align: center;
+    flex-direction: column;
+    h1 {
+      font-size: 2rem;
+    }
+  }
 }
 
 .logo {
-    flex: 1;
+  flex: 1;
 
-    img {
-        width: 130px;
-    }
+  img {
+    width: 130px;
+  }
 }
 
 .emtpy-header {
-    flex: 1;
+  flex: 1;
 }
 
 .main-layout {
+  display: flex;
+  gap: 2em;
+
+  & > div:first-of-type {
+    flex: 1;
+  }
+
+  & > div:not(:first-of-type) {
+    flex: 3;
+  }
+
+  & > div {
     display: flex;
-    gap: 2em;
+    flex-direction: column;
+  }
 
-    &>div:first-of-type {
-        flex: 1;
-    }
-
-    &>div:not(:first-of-type) {
-        flex: 3;
-    }
-
-    &>div {
-        display: flex;
-        flex-direction: column;
-    }
-
-    @media only screen and (max-width: 500px) {
-        flex-direction: column;
-      }
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 }

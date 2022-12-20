@@ -1,10 +1,10 @@
-import { BASE_URL, DRIVERFORM1 } from "constants/apiKeys";
+import { BASE_URL, DRIVERFORM2 } from "constants/apiKeys";
 import axios from "axios";
 
-async function DeleteDriver(id) {
+async function DeleteDriver2(id) {
   const options = {
     method: "DELETE",
-    url: BASE_URL + DRIVERFORM1 + "/" + id,
+    url: BASE_URL + DRIVERFORM2 + "/" + id,
   };
 
   try {
@@ -21,4 +21,4 @@ async function DeleteDriver(id) {
   }
 }
 
-export default DeleteDriver;
+export default DeleteDriver2;

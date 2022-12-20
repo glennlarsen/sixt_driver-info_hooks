@@ -12,7 +12,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import countryList from "react-select-country-list";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "constants/schema";
-import SendDriverInfo from "utils/SendDriverInfo";
+import SendDriverInfo2 from "utils/SendDriverInfo2";
 import AlertMessage from "components/AlertMessage";
 
 const FormTextField = styled(TextField)({
@@ -24,7 +24,7 @@ const FormTextField = styled(TextField)({
   },
 });
 
-function DriverInformation() {
+function DriverInformation2() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -42,7 +42,7 @@ function DriverInformation() {
   // Function that will run when form is submitted
   async function onSubmit(data) {
     setLoading(true);
-    const message = await SendDriverInfo(data);
+    const message = await SendDriverInfo2(data);
     if (message.success) {
       setTimeout(() => {
         setLoading(false);
@@ -212,4 +212,4 @@ function DriverInformation() {
   );
 }
 
-export default DriverInformation;
+export default DriverInformation2;

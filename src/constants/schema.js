@@ -8,7 +8,7 @@ import {
 const schema = yup.object().shape({
   country: yup.string().nullable().transform((v, o) => (o === '' ? null : v)),
   postal: yup.string().nullable().transform((v, o) => (o === '' ? null : v)),
-  city: yup.string().nullable(),
+  city: yup.string().nullable().transform((v, o) => (o === '' ? null : v)),
   email: yup
     .string()
     .nullable()
