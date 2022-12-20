@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "images/sixt-logo-black-white.png";
 
-function Header({ title, flex, formName }) {
+function Header({ title, flex, info }) {
   return (
     <header>
       <div
@@ -9,7 +9,7 @@ function Header({ title, flex, formName }) {
         className="logo"
       >
         <img src={logo} alt="Sixt Logo" />
-        <span>{formName}</span>
+        <span>{info}</span>
       </div>
       <h1>{title}</h1>
       <div className="emtpy-header"></div>

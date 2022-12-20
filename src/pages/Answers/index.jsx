@@ -19,7 +19,7 @@ function Answers() {
         page="Answers"
         description="Showing answers that the client provides to the form"
       />
-      <Header title="Answers" flex={2} formName={formName} />
+      <Header title="Answers" flex={2} info={formName} />
       <Layout backPage={`form/${formName}`}>
         {formName === "flesland1" && <AnswersForm />}
         {formName === "flesland2" && <AnswersForm2 />}

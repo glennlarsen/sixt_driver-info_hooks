@@ -8,7 +8,7 @@ function Login() {
   return (
     <Container>
       <Head page="Login" description="Login to start using Sixt Driver info Forms" />
-      <Header title="Login" />
+      <Header title="Login" info="Driver Info Forms" />
       <LoginForm />
     </Container>
   );
