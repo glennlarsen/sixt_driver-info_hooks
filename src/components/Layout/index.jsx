@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Tooltip from "@mui/material/Tooltip";
 
-function Layout({ children, showBackButton, backPage }) {
+function Layout({ children, showBackButton, backPage, showHowItWorks }) {
   const navigate = useNavigate();
   const logout = () => {
     navigate("/");
@@ -24,6 +24,9 @@ function Layout({ children, showBackButton, backPage }) {
             style={{ display: showBackButton }}
           ></ArrowBackIcon>
         </Tooltip>
+        <Link to="/howitworks" style={{ display: showHowItWorks }}>
+          How it Works?
+        </Link>
         <span>
           <strong>User:</strong>
         </span>

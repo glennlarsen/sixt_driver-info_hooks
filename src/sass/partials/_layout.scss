@@ -61,6 +61,14 @@ header {
     flex-direction: column;
   }
 
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: $color-primary;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
   @media only screen and (max-width: 500px) {
     flex-direction: column;
   }

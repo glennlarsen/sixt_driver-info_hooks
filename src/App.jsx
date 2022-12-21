@@ -6,12 +6,14 @@ import Forms from "pages/Forms";
 import Form from "pages/Form";
 import LiveForm from "pages/LiveForm";
 import Login from "pages/Login";
+import HowItWorks from "pages/HowItWorks";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/howitworks" element={<HowItWorks />} />
         <Route path="/forms" element={<Forms />} />
         <Route path="/form" element={<Form />} />
         {["/form", "/form/:formName"].map((path, index) => {

@@ -1,122 +1,136 @@
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    max-width: 500px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .box {
-    background: $color-primary !important;
-    color: white !important;
-    text-align: center;
-    padding: 1.5em;
-    min-height: 100px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-weight: 700;
-    transition: 2s;
-    border-radius: 12px !important;
-    margin-bottom: 10px;
+  background: $color-primary !important;
+  color: white !important;
+  text-align: center;
+  padding: 1.5em;
+  min-height: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: 700;
+  transition: 2s;
+  border-radius: 12px !important;
+  margin-bottom: 10px;
 
-    &:hover {
-        background-color: $color-hover !important;
-        cursor: pointer;
-    }
+  &:hover {
+    background-color: $color-hover !important;
+    cursor: pointer;
+  }
 
-    &-inactive {
-        opacity: .4;
-    }
+  &-inactive {
+    opacity: 0.4;
+  }
 }
 
 .box-new {
-    background: transparent !important;
-    color: grey !important;
-    padding: 1.5em;
-    min-height: 100px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-weight: 700;
-    transition: 2s;
-    border-radius: 12px !important;
-    border: dashed 2px grey;
-    box-shadow: none !important;
+  background: transparent !important;
+  color: grey !important;
+  padding: 1.5em;
+  min-height: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: 700;
+  transition: 2s;
+  border-radius: 12px !important;
+  border: dashed 2px grey;
+  box-shadow: none !important;
 
-    &:hover {
-        border-color: $color-primary !important;
-        color: $color-primary !important;
-        cursor: pointer;
-    }
+  &:hover {
+    border-color: $color-primary !important;
+    color: $color-primary !important;
+    cursor: pointer;
+  }
 }
 
 .answers-form {
-    max-width: 100%;
-    flex: 3;
+  max-width: 100%;
+  flex: 3;
 }
 
 .copy-alert {
-   height: 42px;
+  height: 42px;
 }
 
 .last-received {
-    font-style: italic;
+  font-style: italic;
 }
 
 .form-complete {
-    border: 2px solid $color-primary;
-    border-radius: 50%;
-    padding: 1em;
-    font-size: 2rem;
-    font-weight: bold;
-    height: 400px;
-    width: 500px;
-    margin: auto;
-    text-align: center;
-    transition: 2s;
+  border: 2px solid $color-primary;
+  border-radius: 50%;
+  padding: 1em;
+  font-size: 2rem;
+  font-weight: bold;
+  height: 400px;
+  width: 500px;
+  margin: auto;
+  text-align: center;
+  transition: 2s;
 
-    @media only screen and (max-width: 500px) {
-        font-size: 1.5rem;
-        height: 250px;
-        width: 250px;
-      }
+  @media only screen and (max-width: 500px) {
+    font-size: 1.5rem;
+    height: 250px;
+    width: 250px;
+  }
 }
 
 .no-answers {
-    width: 100%;
-    border: 2px solid $color-primary;
-    padding: 2em;
-    text-align: center;
-    font-size: 2rem;
-    border-radius: 12px;
-    margin-bottom: 1em;
+  width: 100%;
+  border: 2px solid $color-primary;
+  padding: 2em;
+  text-align: center;
+  font-size: 2rem;
+  border-radius: 12px;
+  margin-bottom: 1em;
 
-    @media only screen and (max-width: 840px) {
-        font-size: 1.5rem;
-      }
+  @media only screen and (max-width: 840px) {
+    font-size: 1.5rem;
+  }
 
-      @media only screen and (max-width: 440px) {
-        font-size: 1rem;
-      }
+  @media only screen and (max-width: 440px) {
+    font-size: 1rem;
+  }
 }
 
 .react-confirm-alert-body {
-    background: $color-primary !important;
-    color: white !important;
-    width: 100% !important;
-    border-radius: 12px !important;
+  background: $color-primary !important;
+  color: white !important;
+  width: 100% !important;
+  border-radius: 12px !important;
 }
 
 .react-confirm-alert-button-group {
-    &> button {
-        background: $color-dark !important;
-        padding: 1em !important;
-        font-size: 1rem !important;
-        transition: .2s;
+  & > button {
+    background: $color-dark !important;
+    padding: 1em !important;
+    font-size: 1rem !important;
+    transition: 0.2s;
 
-        &:hover {
-            color: $color-primary;
-        }
+    &:hover {
+      color: $color-primary;
     }
+  }
+}
+
+.box-how {
+  text-align: center;
+  padding: 1em;
+  border: 1px solid $color-primary;
+  border-radius: 12px;
+  font-weight: bold;
+
+  h2 {
+    font-size: 2rem;
+    margin: 0.2em;
+    color: $color-primary;
+  }
 }
