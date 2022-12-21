@@ -13,7 +13,7 @@ function HowItWorks() {
       />
       <Header title="How it Works?" info="Driver Info Forms" flex={2} />
       <Layout showHowItWorks="none">
-      <HowToDesciption />
+        <HowToDesciption />
       </Layout>
     </Container>
   );
