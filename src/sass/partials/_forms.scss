@@ -19,6 +19,8 @@ form {
   transition: 2s;
   border-radius: 12px !important;
   margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px !important;
 
   &:hover {
     background-color: $color-hover !important;
@@ -85,7 +87,7 @@ form {
 
 .no-answers {
   width: 100%;
-  border: 2px solid $color-primary;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
   padding: 2em;
   text-align: center;
   font-size: 2rem;
@@ -124,9 +126,12 @@ form {
 .box-how {
   text-align: center;
   padding: 1em;
-  border: 1px solid $color-primary;
   border-radius: 12px;
-  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
+
+  svg {
+    color: $color-primary;
+  }
 
   h2 {
     font-size: 2rem;

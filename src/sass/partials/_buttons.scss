@@ -1,50 +1,52 @@
 button {
-    padding: .8em;
-    background: $color-primary;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    border-radius: 12px;
-    margin-top: .8em;
-    border: none;
-    transition: .2s;
+  padding: 0.8em;
+  background: $color-primary;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  margin-top: 0.8em;
+  border: none;
+  transition: 0.2s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-    &:hover {
-        background-color: $color-hover;
-        cursor: pointer;
-    }
+  &:hover {
+    background-color: $color-hover;
+    cursor: pointer;
+  }
 }
 
 .btn-menu {
-    max-width: fit-content;
-    padding: .8em 1.2em;
-    background-color: $color-dark;
-    margin-bottom: 1em;
+  max-width: fit-content;
+  padding: 0.8em 1.2em;
+  background-color: $color-dark;
+  margin-bottom: 1em;
 }
 
 .btn-back {
-    margin-bottom: .8em;
-    cursor: pointer;
-    font-size: 2.5rem !important;
+  margin-bottom: 0.8em;
+  cursor: pointer;
+  font-size: 2.5rem !important;
 
-    &:hover {
-        color: $color-primary;
-    }
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 .btn-reset {
-    text-align: center;
-    font-size: .8rem;
-    font-style: italic;
-    color: grey;
-    transition: 2s;
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: grey;
+  transition: 2s;
 
-    &:hover {
-        cursor: pointer;
-        color: $color-dark;
-    }
+  &:hover {
+    cursor: pointer;
+    color: $color-dark;
+  }
 }
 
 .btn-delete:hover {
-    color: red;
+  color: red;
 }

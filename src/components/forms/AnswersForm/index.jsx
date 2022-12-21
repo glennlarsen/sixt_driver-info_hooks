@@ -224,7 +224,11 @@ function AnswersForm() {
                       readOnly: true,
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton edge="end" color="primary">
+                          <IconButton
+                            edge="end"
+                            color="primary"
+                            sx={{ boxShadow: "none" }}
+                          >
                             <ContentCopyIcon
                               sx={{ height: ".8em", width: ".8em" }}
                               onClick={copyCountry}
@@ -247,7 +251,11 @@ function AnswersForm() {
                       readOnly: true,
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton edge="end" color="primary">
+                          <IconButton
+                            edge="end"
+                            color="primary"
+                            sx={{ boxShadow: "none" }}
+                          >
                             <ContentCopyIcon
                               sx={{ height: ".8em", width: ".8em" }}
                               onClick={copyStreet}
@@ -271,7 +279,11 @@ function AnswersForm() {
                         readOnly: true,
                         endAdornment: (
                           <InputAdornment position="end">
-                            <IconButton edge="end" color="primary">
+                            <IconButton
+                              edge="end"
+                              color="primary"
+                              sx={{ boxShadow: "none" }}
+                            >
                               <ContentCopyIcon
                                 sx={{ height: ".8em", width: ".8em" }}
                                 onClick={copyPostal}
@@ -294,7 +306,11 @@ function AnswersForm() {
                         readOnly: true,
                         endAdornment: (
                           <InputAdornment position="end">
-                            <IconButton edge="end" color="primary">
+                            <IconButton
+                              edge="end"
+                              color="primary"
+                              sx={{ boxShadow: "none" }}
+                            >
                               <ContentCopyIcon
                                 sx={{ height: ".8em", width: ".8em" }}
                                 onClick={copyCity}
@@ -319,7 +335,11 @@ function AnswersForm() {
                       readOnly: true,
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton edge="end" color="primary">
+                          <IconButton
+                            edge="end"
+                            color="primary"
+                            sx={{ boxShadow: "none" }}
+                          >
                             <ContentCopyIcon
                               sx={{ height: ".8em", width: ".8em" }}
                               onClick={copyPhone}
@@ -342,7 +362,11 @@ function AnswersForm() {
                       readOnly: true,
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton edge="end" color="primary">
+                          <IconButton
+                            edge="end"
+                            color="primary"
+                            sx={{ boxShadow: "none" }}
+                          >
                             <ContentCopyIcon
                               sx={{ height: ".8em", width: ".8em" }}
                               onClick={copyEmail}
