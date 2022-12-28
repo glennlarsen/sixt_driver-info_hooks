@@ -58,6 +58,8 @@ function DriverInformation() {
 
   const countries = useMemo(() => countryList().getData(), []);
 
+  console.log(countryList());
+
   if (loading && submitted) {
     return (
       <div className="loaderContainer form-complete">
@@ -84,25 +86,23 @@ function DriverInformation() {
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <FormTextField
-        variant="standard"
-        label="Country"
-        type="text"
-        placeholder="Your home Country"
-        {...register("country")}
-        error={Boolean(errors.country)}
-        helperText={errors.country ? errors.country.message : ""}
-        InputProps={
-          errors.country
-            ? {
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <ErrorRoundedIcon color="error" />
-                  </InputAdornment>
-                ),
-              }
-            : null
-        }
+      <Autocomplete
+        freeSolo
+        disablePortal
+        id="country"
+        options={countries}
+        renderInput={(params) => (
+          <FormTextField
+            variant="standard"
+            fullWidth
+            placeholder="Select from list"
+            {...register("country")}
+            {...params}
+            label="Country"
+            error={Boolean(errors.country)}
+            helperText={errors.country ? errors.country.message : ""}
+          />
+        )}
       />
       <FormTextField
         variant="standard"
