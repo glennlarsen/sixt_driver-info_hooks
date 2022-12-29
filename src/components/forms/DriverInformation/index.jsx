@@ -25,6 +25,7 @@ const FormTextField = styled(TextField)({
 });
 
 function DriverInformation() {
+  const [inputValue, setInputValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -34,10 +35,19 @@ function DriverInformation() {
     handleSubmit,
     reset,
     getValues,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const onReset = () => {
+    reset();
+    setInputValue("");
+  };
+
+  console.log("Get Values:", getValues());
+  console.log("Watch:", watch());
 
   // Function that will run when form is submitted
   async function onSubmit(data) {
@@ -64,7 +74,7 @@ function DriverInformation() {
     return (
       <div className="loaderContainer form-complete">
         <DoneIcon sx={{ fontSize: 100, color: "#FF5F00" }} />
-        Thank you! Have a great day.
+        Thank you! Enjoy your SIXT Experience.
       </div>
     );
   }
@@ -87,11 +97,13 @@ function DriverInformation() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Autocomplete
-      key={countries}
+        key={countries}
         freeSolo
         disablePortal
         id="country"
         options={countries}
+        inputValue={inputValue}
+        onInputChange={(_, v) => setInputValue(v)}
         renderInput={(params) => (
           <FormTextField
             variant="standard"
@@ -206,7 +218,7 @@ function DriverInformation() {
         }
       />
       <button type="submit">Submit</button>
-      <span onClick={() => reset()} className="btn-reset">
+      <span onClick={() => onReset()} className="btn-reset">
         Reset fields
       </span>
     </Box>
