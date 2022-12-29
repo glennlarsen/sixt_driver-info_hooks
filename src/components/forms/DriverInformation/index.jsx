@@ -58,7 +58,7 @@ function DriverInformation() {
 
   const countries = useMemo(() => countryList().getData(), []);
 
-  console.log(countryList());
+  console.log(countries);
 
   if (loading && submitted) {
     return (
@@ -87,6 +87,7 @@ function DriverInformation() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Autocomplete
+      key={countries}
         freeSolo
         disablePortal
         id="country"

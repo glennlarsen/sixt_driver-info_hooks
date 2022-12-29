@@ -294,7 +294,7 @@ function AnswersForm() {
                       }}
                       variant="standard"
                       label="Postal Code"
-                      type="number"
+                      type="text"
                       defaultValue={answers ? postal : ""}
                       inputRef={postalRef}
                     />

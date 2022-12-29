@@ -44,6 +44,8 @@ button {
   font-style: italic;
   color: grey;
   transition: 2s;
+  width: fit-content;
+  margin: 0 auto;
 
   &:hover {
     cursor: pointer;
