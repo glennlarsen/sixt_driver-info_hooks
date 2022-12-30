@@ -350,7 +350,7 @@ function AnswersForm2() {
                     }}
                     variant="standard"
                     label="Phone Number"
-                    type="phone"
+                    type="text"
                     defaultValue={answers ? phone : ""}
                     inputRef={phoneRef}
                   />

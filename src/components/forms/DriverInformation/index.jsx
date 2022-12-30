@@ -25,7 +25,7 @@ const FormTextField = styled(TextField)({
 });
 
 function DriverInformation() {
-  const [inputValue, setInputValue] = useState("");
+  const [countryValue, setCountryValue] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -43,7 +43,7 @@ function DriverInformation() {
 
   const onReset = () => {
     reset();
-    setInputValue("");
+    setCountryValue("");
   };
 
   console.log("Get Values:", getValues());
@@ -102,8 +102,8 @@ function DriverInformation() {
         disablePortal
         id="country"
         options={countries}
-        inputValue={inputValue}
-        onInputChange={(_, v) => setInputValue(v)}
+        inputValue={countryValue}
+        onInputChange={(_, v) => setCountryValue(v)}
         renderInput={(params) => (
           <FormTextField
             variant="standard"
@@ -180,9 +180,14 @@ function DriverInformation() {
       <FormTextField
         variant="standard"
         label="Phone Number"
-        type="number"
-        placeholder="+47..."
+        type="text"
+        placeholder="+..."
         {...register("phone")}
+        onKeyPress={(event) => {
+          if (!/[0-9+]/.test(event.key)) {
+            event.preventDefault();
+          }
+        }}
         error={Boolean(errors.phone)}
         helperText={errors.phone ? errors.phone.message : ""}
         InputProps={

@@ -189,6 +189,7 @@ function AnswersForm() {
         .map((item) => {
           const { country, street, postal, city, phone, email, publishedAt } =
             item.attributes;
+          console.log(phone);
           var options = {
             weekday: "long",
             year: "numeric",
@@ -350,8 +351,8 @@ function AnswersForm() {
                     }}
                     variant="standard"
                     label="Phone Number"
-                    type="phone"
-                    defaultValue={answers ? phone : ""}
+                    type="text"
+                    value={answers ? phone : ""}
                     inputRef={phoneRef}
                   />
                 </Tooltip>
