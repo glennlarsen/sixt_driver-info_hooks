@@ -108,7 +108,7 @@ function DriverInformation() {
           <FormTextField
             variant="standard"
             fullWidth
-            placeholder="Select from list"
+            placeholder="Select home country"
             {...register("country")}
             {...params}
             label="Country"
@@ -121,6 +121,7 @@ function DriverInformation() {
         variant="standard"
         label="Street"
         type="text"
+        placeholder="Home address..."
         {...register("street")}
         error={Boolean(errors.street)}
         helperText={errors.street ? errors.street.message : ""}
