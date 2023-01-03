@@ -55,6 +55,7 @@ function DriverInformation2() {
       }, 5000);
       setSubmitted(true);
       reset();
+      setCountryValue("")
     } else {
       setLoading(false);
       setSubmitted(false);
